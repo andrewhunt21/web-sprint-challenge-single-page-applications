@@ -13,7 +13,7 @@ export default function Home() {
         <div>
             <h3>Your favorite food, delivered while coding</h3>
 
-            <button onClick={routeToPizza}>Order Pizza</button>
+            <button id="order-pizza" onClick={routeToPizza}>Order Pizza</button>
 
         </div>
     )

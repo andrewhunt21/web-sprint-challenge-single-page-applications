@@ -1,20 +1,58 @@
 import React from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
 
-export default function Form() {
+export default function Form(props) {
+
+    const {
+        values,
+        submit,
+        change,
+        errors,
+    } = props
+
+    const onSubmit = evt => {
+        evt.preventDefault()
+        submit()
+    }
+
+    const onChange = evt => {
+        const { name, value, checked, type } = evt.target;
+        const valueToUse = type === 'checkbox' ? checked : value;
+        change(name, valueToUse);
+    }
 
     return (
         <div>
-            <h3>Build Your Own Pizza</h3>
+            <h2>Build Your Own Pizza</h2>
 
-            <form id="pizza-form">
+            <form id="pizza-form" onSubmit={onSubmit}>
 
                 <div>
-                    <h4>Choose your Size</h4>
+                    <h3>Name for your order</h3>
+
+                    <label>
+                        <input 
+                            type="text"
+                            name="name"
+                            placeholder="First and Last name"
+                            id="name-input"
+                            value={values.name}
+                            onChange={onChange}
+                        />
+                    </label>
+                </div>
+
+                <div>
+                    <h3>Choose your Size</h3>
                     <p>Required</p>
 
                     <label>
-                        <select name="size" id="size-dropdown">
+                        <select 
+                            name="size" 
+                            id="size-dropdown"
+                            value={values.size}
+                            onChange={onChange}
+                            >
                             <option value="">-- select --</option>
                             <option value="ten">10 inch</option>
                             <option value="twelve">12 inch</option>
@@ -25,13 +63,15 @@ export default function Form() {
                 </div>
 
                 <div>
-                    <h4>Add Toppings</h4>
-                    <p>Choose some!</p>
+                    <h3>Add Toppings</h3>
+                    <p>Choose some up to four toppings</p>
 
                     <label>Pepperoni
                         <input
                             type="checkbox"
                             name="pepperoni"
+                            value={values.pepperoni}
+                            onChange={onChange}
                         />
                     </label>
 
@@ -39,6 +79,8 @@ export default function Form() {
                         <input 
                             type="checkbox"
                             name="bacon"
+                            value={values.bacon}
+                            onChange={onChange}
                         />
                     </label>
 
@@ -46,6 +88,8 @@ export default function Form() {
                         <input 
                             type="checkbox"
                             name="pineapple"
+                            value={values.pineapple}
+                            onChange={onChange}
                         />
                     </label>
 
@@ -53,19 +97,23 @@ export default function Form() {
                         <input 
                             type="checkbox"
                             name="olives"
+                            value={values.olives}
+                            onChange={onChange}
                         />
                     </label>
                 </div>
 
                 <div>
-                    <h4>Special Instructions</h4>
+                    <h3>Special Instructions</h3>
 
                     <label>
                         <input 
                             type="text"
-                            name="instructions"
+                            name="special"
                             placeholder="Anything else?"
                             id="special-text"
+                            value={values.special}
+                            onChange={onChange}
                         />
                     </label>
                 </div>
