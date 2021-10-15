@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, Route, Switch } from "react-router-dom";
 import Home from './components/Home';
+import Form from "./components/Form";
 
 const App = () => {
   return (
@@ -15,9 +16,15 @@ const App = () => {
       </nav>
 
       <Switch>
-        <Route path="/">
-          <Home />
+
+        <Route exact path="/">
+          <Home id="order-pizza"/>
         </Route>
+
+        <Route path="/pizza">
+          <Form id="pizza-form"/>
+        </Route>
+
       </Switch>
 
     </div>
