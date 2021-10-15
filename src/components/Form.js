@@ -29,7 +29,7 @@ export default function Form(props) {
 
                 <div>
                     <h3>Name for your order</h3>
-
+                    <div>{errors.name}</div>
                     <label>
                         <input 
                             type="text"

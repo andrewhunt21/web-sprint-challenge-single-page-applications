@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, Route, Switch } from "react-router-dom";
 import axios from "axios";
+import * as yup from 'yup';
 import Home from './components/Home';
 import Form from "./components/Form";
+import schema from './validation/formSchema';
 
 const initialFormValues = {
   name: "",
@@ -46,7 +48,20 @@ const App = () => {
       })
   }
 
-  console.log(orders);
+  const validate = (name, value) => {
+    yup.reach(schema, name)
+      .validate(value)
+      .then(() => setFormErrors({ ...formErrors, [name]: '' }))
+      .catch(err => setFormErrors({ ...formErrors, [name]: err.errors[0] }))
+  }
+
+  const inputChange = (name, value) => {
+    validate(name, value);
+    setFormValues({
+      ...formValues,
+      [name]: value
+    })
+  }
 
   const formSubmit = () => {
     const newOrder = {
@@ -58,6 +73,10 @@ const App = () => {
     console.log(newOrder);
     postNewOrder(newOrder);
   }
+
+  useEffect(() => {
+    getOrders()
+  }, [])
 
   return (
     <div>
@@ -81,7 +100,7 @@ const App = () => {
             id="pizza-form"
             values={formValues}
             submit={formSubmit}
-            change={null}
+            change={inputChange}
             errors={formErrors}
           />
         </Route>
