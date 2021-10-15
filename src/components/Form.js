@@ -70,6 +70,7 @@ export default function Form(props) {
                         <input
                             type="checkbox"
                             name="pepperoni"
+                            className="toppings"
                             value={values.pepperoni}
                             onChange={onChange}
                         />
@@ -79,6 +80,7 @@ export default function Form(props) {
                         <input 
                             type="checkbox"
                             name="bacon"
+                            className="toppings"
                             value={values.bacon}
                             onChange={onChange}
                         />
@@ -88,6 +90,7 @@ export default function Form(props) {
                         <input 
                             type="checkbox"
                             name="pineapple"
+                            className="toppings"
                             value={values.pineapple}
                             onChange={onChange}
                         />
@@ -97,6 +100,7 @@ export default function Form(props) {
                         <input 
                             type="checkbox"
                             name="olives"
+                            className="toppings"
                             value={values.olives}
                             onChange={onChange}
                         />
