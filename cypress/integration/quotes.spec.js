@@ -12,7 +12,7 @@ describe('Quotes App', () => {
         expect(1 + 2).to.equal(3);
     })
 
-    describe('filling out inputs and cancelling', () => {
+    describe('running mvp tests', () => {
         it('can type in the inputs', () => {
             nameInput()
                 .should('have.value', '')
@@ -22,6 +22,13 @@ describe('Quotes App', () => {
                 .should('have.value', '')
                 .type('some special instructions')
                 .should('have.value', 'some special instructions');
+        })
+        it('can select all toppings', () => {
+            toppingsBoxes()
+                .click();
+        })
+        it('can submit form', () => {
+            submitButton().click();
         })
     })
 
